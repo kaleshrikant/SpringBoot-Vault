@@ -1,1 +1,18 @@
-spring.application.name=SpringBoot-Vault
+spring:
+  application:
+    name: SpringBoot-Vault
+  cloud:
+    vault:
+      host: localhost
+      port: 8200
+      token: 0000-0000-0000-0000 # if you have not mentioned anything you should use the random generated token by vault
+      scheme: http # default the schema is set to https but we are running our vault server at http
+      kv:
+        backend: kv
+        default-context: credentials # Inside the backend (secret engine) we have stored our apiKey at 'credentials' path which is for 'external-api.apiKey'
+  config:
+    import: optional:vault://  # To import the configuration from vault server just use the below config.
+
+
+external-api:
+  uri: https://external-api-demo.com/v1/
